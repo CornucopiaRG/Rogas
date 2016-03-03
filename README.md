@@ -1,4 +1,4 @@
-# Rogas
+# Rogas ![Logo](https://cecs.anu.edu.au/sites/default/files/styles/anu_doublenarrow_440_scale/public/images/rogas-web.jpg?itok=JfEfhc1_)
 Project for Network Analytics
 
 Currently the Rogas project contains a framework for network analytics called RG Framework. 
@@ -28,7 +28,6 @@ graph algorithms, currently, we take advantage of **Graph-tool**, **SNAP** and
 <br>
 Here are the links for the python packages above:
 <br>
-<br>
 (suggest to use Ubuntu or other Linux systems, Mac and Windows are hard to install all these packages)
 * Psycopg: http://initd.org/psycopg/
 * TkInter: https://wiki.python.org/moin/TkInter
@@ -42,12 +41,14 @@ Here are the links for the python packages above:
 Before runing the prototype, ensure the system is Ubuntu and all the external 
 python packages mentioned above are installed correctly. 
 <br>
+<br>
 *Notice that pillow is 
 the latest package for PIL and it is not compatible with the old PIL package. 
 If your have already had PIL in your python dist-packages (/usr/lib/python2.7/dist-packages/),
 please delete the original PIL and install the new Pillow package. If you are using Eclipse or 
 other IDE I suggest using source code to install Pillow so that the unresolved import 
 issues of the IDE can be solved.* 
+<br>
 <br>
 You also need to change the code of the *queryConsole.start()* method a bit 
 to connect your own PostgreSQL database. Then you can start the prototype 
