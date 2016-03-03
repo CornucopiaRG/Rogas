@@ -2,6 +2,9 @@
 The GUI_Console is the GUI for entering queries, showing results and displaying graphs
 The Graph Panel is still in developing. Currently, the GUI just show an example in the Graph Panel
 
+If press enter and the last char is ";", then end the query input,
+If press F1, clear text and continue for next query
+
 @author: minjianliu
 '''
 from Tkinter import * #GUI package
