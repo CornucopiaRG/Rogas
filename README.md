@@ -27,6 +27,8 @@ graph algorithms, currently, we take advantage of **Graph-tool**, **SNAP** and
 <br>
 <br>
 Here are the links for the python packages above:
+<br>
+<br>
 (suggest to use Ubuntu or other Linux systems, Mac and Windows are hard to install all these packages)
 * Psycopg: http://initd.org/psycopg/
 * TkInter: https://wiki.python.org/moin/TkInter
@@ -38,12 +40,15 @@ Here are the links for the python packages above:
 <br>
 <br>
 Before runing the prototype, ensure the system is Ubuntu and all the external 
-python packages mentioned above are installed correctly. *Notice that pillow is 
+python packages mentioned above are installed correctly. 
+<br>
+*Notice that pillow is 
 the latest package for PIL and it is not compatible with the old PIL package. 
 If your have already had PIL in your python dist-packages (/usr/lib/python2.7/dist-packages/),
 please delete the original PIL and install the new Pillow package. If you are using Eclipse or 
 other IDE I suggest using source code to install Pillow so that the unresolved import 
 issues of the IDE can be solved.* 
+<br>
 You also need to change the code of the *queryConsole.start()* method a bit 
 to connect your own PostgreSQL database. Then you can start the prototype 
 by running the *GUI_Console* program.
