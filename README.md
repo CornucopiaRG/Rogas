@@ -1,5 +1,5 @@
-# Rogas ![Logo](https://cecs.anu.edu.au/sites/default/files/styles/anu_doublenarrow_440_scale/public/images/rogas-web.jpg?itok=JfEfhc1_)
-Project for Network Analytics
+#![Logo](https://cecs.anu.edu.au/sites/default/files/styles/anu_doublenarrow_440_scale/public/images/rogas-web.jpg?itok=JfEfhc1_)
+Rogas is a project for Network Analytics
 
 Currently the Rogas project contains a framework for network analytics called RG Framework. 
 It not only can provides a high-level declarative query language to 
