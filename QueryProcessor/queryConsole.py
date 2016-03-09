@@ -50,14 +50,24 @@ def printResult(conn, cur, result_Text):
     table = pylsytable(colnames)
     rows = cur.fetchall()
     col_index = 0
+    row_num = 0
     for i in rows:
+        row_num += 1
         for each in i:
-            print str(each) + '\t'
+            print str(each) + '\t',
             table.append_data(colnames[col_index], str(each))
             col_index += 1
         print
         col_index = 0
-    result_Text.insert(INSERT, table)
+        
+        #solve the print problem of using pylsytable when the output data is too large
+        if row_num == 100:  #every 100 lines, then we print a table, then create a new table
+            result_Text.insert(INSERT, table)
+            row_num = 0
+            table = pylsytable(colnames)
+    
+    if row_num != 0:                   
+        result_Text.insert(INSERT, table)
     conn.commit() 
     result_Text.config(state=DISABLED)    
      
