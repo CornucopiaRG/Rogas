@@ -26,7 +26,7 @@ graph algorithms, currently, we take advantage of **Graph-tool**, **SNAP** and
 **NetworkX** for algorithms support.
 <br>
 <br>
-Here are the links for the python packages above:
+Here are the links for the python packages mentioned above:
 <br>
 (suggest to use Ubuntu or other Linux systems, Mac and Windows are hard to install all these packages)
 * Psycopg: http://initd.org/psycopg/
@@ -42,12 +42,12 @@ Before runing the prototype, ensure the system is Ubuntu and all the external
 python packages mentioned above are installed correctly. 
 <br>
 <br>
-*Notice that pillow is 
+**Notice that pillow is 
 the latest package for PIL and it is not compatible with the old PIL package. 
 If your have already had PIL in your python dist-packages (/usr/lib/python2.7/dist-packages/),
 please delete the original PIL and install the new Pillow package. If you are using Eclipse or 
-other IDE I suggest using source code to install Pillow so that the unresolved import 
-issues of the IDE can be solved.* 
+other IDE, I suggest to use the source code to install Pillow so that the unresolved import 
+issues of the IDE can be solved.**
 <br>
 <br>
 You also need to change the code of the *queryConsole.start()* method a bit 
@@ -62,7 +62,7 @@ contact *u5506264@anu.edu.au* or *qing.wang@anu.edu.au* for more information.
 <br>
 <br>
 PS: For answering how to change the output of the GUI_Console as left alignment (default is center alignment)
-You can change the source code of the pylsytable as follow:(the path of Ubuntu normally is 
+You can change the source code of the pylsytable as follow:(the path in Ubuntu normally is 
 '/usr/local/lib/python2.7/dist-packages/pylsy/pylsy.py).
 <br>
 * Find the "def _pad_string(self, str, colwidth):" function in the pylsy.py
