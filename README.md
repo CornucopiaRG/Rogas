@@ -38,7 +38,6 @@ Here are the links for the python packages above:
 * NetworkX: http://networkx.github.io/  
 
 <br>
-<br>
 Before runing the prototype, ensure the system is Ubuntu and all the external 
 python packages mentioned above are installed correctly. 
 <br>
