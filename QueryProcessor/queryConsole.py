@@ -111,7 +111,7 @@ def start(query, result_Text):
     #db = "acm_small"
     db = "acm"
     dbUser = "minjian"
-    dbPort = 5433
+    dbPort = 5432
     
     conn = psycopg2.connect(database=db, user=dbUser, port=dbPort)
     cur = conn.cursor()
