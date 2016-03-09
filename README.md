@@ -59,3 +59,12 @@ More details about the RG framework, please refer to
 the thesis "Towards a Unified Framework for Network Analytics" collected in 
 Australian National University (the link is to be published). You can also 
 contact *u5506264@anu.edu.au* or *qing.wang@anu.edu.au* for more information.
+<br>
+<br>
+PS: For answering how to change the output of the GUI_Console as left alignment (default is center alignment)
+You can change the source code of the pylsytable as follow:(the path of Ubuntu normally is 
+'/usr/local/lib/python2.7/dist-packages/pylsy/pylsy.py).
+<br>
+* Find the "def _pad_string(self, str, colwidth):" function in the pylsy.py
+* change " return ' ' * prefix + str +' ' * suffix " (center alignment ) as " return str + ' ' * prefix +' ' * suffix " (left alignment)
+
