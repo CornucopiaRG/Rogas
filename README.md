@@ -57,7 +57,7 @@ by running the *GUI_Console* program.
 <br>
 More details about the RG framework, please refer to 
 the thesis "Towards a Unified Framework for Network Analytics" collected in 
-Australian National University (the link is to be published). You can also 
+Australian National University (http://users.cecs.anu.edu.au/~u5170295/publications/thesis-minjian.pdf). You can also 
 contact *u5506264@anu.edu.au* or *qing.wang@anu.edu.au* for more information.
 <br>
 <br>
