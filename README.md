@@ -35,7 +35,8 @@ Here are the links for the python packages above:
 * pylsytable: https://github.com/Leviathan1995/Pylsy?files=1
 * Graph-tool: http://graph-tool.skewed.de/
 * SNAP: http://snap.stanford.edu/snappy/index.html
-* NetworkX: http://networkx.github.io/
+* NetworkX: http://networkx.github.io/  
+
 <br>
 <br>
 Before runing the prototype, ensure the system is Ubuntu and all the external 
