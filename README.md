@@ -1,7 +1,7 @@
 #![Logo](https://cecs.anu.edu.au/sites/default/files/styles/anu_doublenarrow_440_scale/public/images/rogas-web.jpg?itok=JfEfhc1_)
 Rogas is a project for Network Analytics
 
-Latest news: Rogas is now joining the Google Summer of Code 2016. In the following months, we aim to develop a new GUI for Rogas with more comprehensive network visualisation functions and also implement "Local Community Detection Search" for Rogas. We will upload new source code after the new GUI and functions have been achieved. 
+Latest news: Rogas is now joining the Google Summer of Code 2016. In the following months, we aim to develop a new GUI for Rogas with more comprehensive network visualisation functions and also implement "Local Community Detection Search" for Rogas. We will upload new source code after the new GUI and functions have been achieved. For who wants to have a sneak peak, please refer to https://github.com/shallyan/GSoC-Rogas.
 
 Currently the Rogas project contains a framework for network analytics called RG Framework. 
 It not only can provides a high-level declarative query language to 
