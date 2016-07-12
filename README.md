@@ -1,10 +1,10 @@
 #![Logo](https://cecs.anu.edu.au/sites/default/files/styles/anu_doublenarrow_440_scale/public/images/rogas-web.jpg?itok=JfEfhc1_)
 Rogas is a project for Network Analytics
 
-### Latest news 
+## Latest news 
 Rogas is now joining the Google Summer of Code 2016. In the following months, we aim to develop a new GUI for Rogas with more comprehensive network visualisation functions and also implement "Local Community Detection Search" for Rogas. We will upload new source code after the new GUI and functions have been achieved. For who wants to have a sneak peak, please refer to https://github.com/shallyan/GSoC-Rogas.
 
-### Introduction
+## Introduction
 Rogas not only can provides a high-level declarative query language to 
 formulate analysis queries, but also can unify different graph algorithms 
 within the relational environment for query processing.
@@ -71,9 +71,9 @@ You can change the source code of the pylsytable as follow:(the path in Ubuntu n
 * Find the "def _pad_string(self, str, colwidth):" function in the pylsy.py
 * change " return ' ' * prefix + str +' ' * suffix " (center alignment ) as " return str + ' ' * prefix +' ' * suffix " (left alignment)
 
-### Contributors
-Instructor: Qing Wang (*qing.wang@anu.edu.au*)
-Principal Developer: Minjian Liu (*minjian.liu@anu.edu.au*)
+## Contributors
+Instructor: Qing Wang (*qing.wang@anu.edu.au*) <br>
+Principal Developer: Minjian Liu (*minjian.liu@anu.edu.au*) <br>
 Developers: 
 * Yan Xiao (*xiaoyanict@foxmail.com*)
 * Chong Feng (*u4943054@anu.edu.au*)
