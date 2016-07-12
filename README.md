@@ -1,15 +1,16 @@
 #![Logo](https://cecs.anu.edu.au/sites/default/files/styles/anu_doublenarrow_440_scale/public/images/rogas-web.jpg?itok=JfEfhc1_)
 Rogas is a project for Network Analytics
 
-Latest news: Rogas is now joining the Google Summer of Code 2016. In the following months, we aim to develop a new GUI for Rogas with more comprehensive network visualisation functions and also implement "Local Community Detection Search" for Rogas. We will upload new source code after the new GUI and functions have been achieved. For who wants to have a sneak peak, please refer to https://github.com/shallyan/GSoC-Rogas.
+### Latest news 
+Rogas is now joining the Google Summer of Code 2016. In the following months, we aim to develop a new GUI for Rogas with more comprehensive network visualisation functions and also implement "Local Community Detection Search" for Rogas. We will upload new source code after the new GUI and functions have been achieved. For who wants to have a sneak peak, please refer to https://github.com/shallyan/GSoC-Rogas.
 
-Currently the Rogas project contains a framework for network analytics called RG Framework. 
-It not only can provides a high-level declarative query language to 
+### Introduction
+Rogas not only can provides a high-level declarative query language to 
 formulate analysis queries, but also can unify different graph algorithms 
 within the relational environment for query processing.
 <br>
 <br>
-The RG framework has three main components: (1) a hybrid data model, which 
+The Rogas has three main components: (1) a hybrid data model, which 
 integrates graphs with relations so that we have these two types of data 
 structures respectively for network analysis and relational analysis; 
 (2) a SQL-like query language, which extends standard SQL with 
@@ -19,7 +20,7 @@ network analysis queries using various graph systems and
 their supporting algorithms.
 <br>
 <br>
-Here is the prototype implementation of the RG Framework. The prototype
+Here is the prototype implementation of the Rogas. The prototype
 is developed in **Python 2.7** with the official PostgreSQL client library – libpq. 
 We use **Psycopg**, the current mature wrapper for the libpq, as the 
 PostgreSQL adapter. For the GUI, we use **TkInter**, **PIL**, and **pylsytable**
@@ -70,3 +71,9 @@ You can change the source code of the pylsytable as follow:(the path in Ubuntu n
 * Find the "def _pad_string(self, str, colwidth):" function in the pylsy.py
 * change " return ' ' * prefix + str +' ' * suffix " (center alignment ) as " return str + ' ' * prefix +' ' * suffix " (left alignment)
 
+### Contributors
+Instructor: Qing Wang (*qing.wang@anu.edu.au*)
+Principal Developer: Minjian Liu (*minjian.liu@anu.edu.au*)
+Developers: 
+* Yan Xiao (*xiaoyanict@foxmail.com*)
+* Chong Feng (*u4943054@anu.edu.au*)
