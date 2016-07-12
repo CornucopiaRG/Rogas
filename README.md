@@ -74,6 +74,4 @@ You can change the source code of the pylsytable as follow:(the path in Ubuntu n
 ## Contributors
 Instructor: Qing Wang (*qing.wang@anu.edu.au*) <br>
 Principal Developer: Minjian Liu (*minjian.liu@anu.edu.au*) <br>
-Developers: 
-* Yan Xiao (*xiaoyanict@foxmail.com*)
-* Chong Feng (*u4943054@anu.edu.au*)
+Developers: Yan Xiao (*xiaoyanict@foxmail.com*), Chong Feng (*u4943054@anu.edu.au*)
