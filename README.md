@@ -58,7 +58,7 @@ to connect your own PostgreSQL database. Then you can start the prototype
 by running the *GUI_Console* program.
 <br>
 <br>
-More details about the RG framework, please refer to 
+More details about the Rogas, please refer to 
 the thesis "Towards a Unified Framework for Network Analytics" collected in 
 Australian National University (http://users.cecs.anu.edu.au/~u5170295/publications/thesis-minjian.pdf). You can also 
 contact *minjian.liu@anu.edu.au* or *qing.wang@anu.edu.au* for more information.
