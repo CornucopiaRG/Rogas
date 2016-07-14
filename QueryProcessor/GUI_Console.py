@@ -11,6 +11,8 @@ from Tkinter import * #GUI package
 from PIL import Image, ImageTk #for Tkinter to support png figure
 import queryConsole
 #import Image, ImageTk
+def button_Event():
+    queryConsole.test_button()
 
 #Key event for Query Text
 def query_Text_Event(event):        
@@ -79,5 +81,10 @@ image = Image.open("coauthorship_topk.png")
 photo = ImageTk.PhotoImage(image)
 imgLabel = Label(graph_Frame, image=photo)
 imgLabel.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+#test button
+b1 = Button(root, text = "Print", command = button_Event);
+b1.grid(row=0, column=1, padx=5, pady=5)
+
 
 mainloop()

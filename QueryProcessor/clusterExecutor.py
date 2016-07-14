@@ -17,8 +17,12 @@ class graphCreator():
         self.indexIdDict = dict()
         self.g = gt.Graph(directed= isDirected)
         index = 0
+        cnt = 0
         edge_list = []
         for each in f:
+            cnt += 1
+            if cnt % 10000 == 0:
+                print "cnt:", cnt
             if each.startswith("#"):
                 continue            
             strPair = each.strip().split()
@@ -36,6 +40,8 @@ class graphCreator():
                 index += 1
                 
             if ((sourceId, targetId) not in edge_list):
+                if len(edge_list) % 5000 == 0:
+                    print "edge_list:" , len(edge_list)
                 if (isDirected == False):
                     edge_list.append((sourceId, targetId))
                     edge_list.append((targetId, sourceId))
@@ -43,6 +49,9 @@ class graphCreator():
                 else:
                     edge_list.append((sourceId, targetId))
                     self.g.add_edge(self.g.vertex(self.idIndexDict[sourceId]), self.g.vertex(self.idIndexDict[targetId]))
+        print "Complete graph loading"
+        print len(edge_list)
+        print cnt
                     
 #based on the algorithms, choose different methods to run the operations
 def processCommand(clusterCommands, conn, cur):

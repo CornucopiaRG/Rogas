@@ -9,21 +9,41 @@ import queryParser
 import matGraphProcessor
 import time
 import os
+import queryOptimiser #import query optimiser
+import queryParserOptimised
 from Tkinter import * #GUI package
 from pylsy import pylsytable #for print table
 
+    #Here is connect to your PostgreSQL
+    #Change you database, user and port here
+db = "acm_small"
+dbUser = "minjian"
+dbPort = 5432
+    
+conn =  psycopg2.connect(database=db, user=dbUser, port=dbPort)
+cur = conn.cursor()
 #starts to execute the input query
 def execQuery(conn, cur, executeCommand, result_Text):
-    lowerCaseCommand = executeCommand.lower()
+    #lowerCaseCommand = executeCommand.lower()
+    lowerCaseCommand = queryParserOptimised.queryPreProcessing(executeCommand)
     
     #graph query contains rank, cluster and path operation
     if ("rank" in lowerCaseCommand) or ("cluster" in lowerCaseCommand)or ("path" in lowerCaseCommand):
         startTime = time.time()
         
-        newExecuteCommand = queryParser.queryAnalyse(executeCommand, conn, cur)
+        #newExecuteCommand = queryParser.queryAnalyse(executeCommand, conn, cur)
         #newExecuteCommand = graphProcessor.queryAnalyse(executeCommand, conn, cur)
         #print "Total operation time is: ", (time.time() - startTime)
         #print newExecuteCommand  #for debug
+        
+        queryTree = queryParserOptimised.queryTreeInitiation(lowerCaseCommand)
+        queryTree.postOrder(conn,cur)
+
+        print("\n--------------------------------------------------------------\n")
+        print("Query Structure: \n")
+        queryTree.printNode()
+        newExecuteCommand = queryTree.getNodeRewrittenQuery()
+        
         cur.execute(newExecuteCommand[:]) #remove the first space
         printResult(conn, cur, result_Text)
     
@@ -42,6 +62,17 @@ def execQuery(conn, cur, executeCommand, result_Text):
         #print executeCommand[:]
         cur.execute(executeCommand[:])  #remove the first space
         printResult(conn, cur, result_Text)
+
+def test_button():
+    be_time = time.time()
+    rows = cur.fetchall()
+   # rows = cur.fetchmany(3)
+    af_time = time.time()
+    print af_time - be_time
+    #for i in rows:
+        #for each in i:
+            #print str(each) + '\t',
+        #print
 
 #prints results received from the database
 def printResult(conn, cur, result_Text):
@@ -105,28 +136,18 @@ def start(query, result_Text):
         
     if os.path.exists(memDir + "/RG_Tmp_Graph") == False:
         os.mkdir(memDir + "/RG_Tmp_Graph")    
-           
-    #Here is connect to your PostgreSQL
-    #Change you database, user and port here
-    #db = "acm_small"
-    db = "acm"
-    dbUser = "minjian"
-    dbPort = 5432
-    
-    conn = psycopg2.connect(database=db, user=dbUser, port=dbPort)
-    cur = conn.cursor()
     
     result_Text.config(state=NORMAL)
     start_time = time.time()
     try:
         execQuery(conn, cur, query, result_Text)
-        #print "Total query time is: ", (time.time() - start_time)
+        print "Total query time is: ", (time.time() - start_time)
         os.system("rm -fr /dev/shm/RG_Tmp_Graph/*")  #clear graphs on-the-fly
         queryParser.graphQueryAndResult.clear()  #clear parser's dictionary for result table names and graph sub-queries
     except psycopg2.ProgrammingError as reason:
         result_Text.insert(INSERT, str(reason))
         result_Text.config(state=DISABLED)
         #print str(reason)
-    finally:
-        cur.close()
-        conn.close()
+    #finally:
+        #cur.close()
+        #conn.close()

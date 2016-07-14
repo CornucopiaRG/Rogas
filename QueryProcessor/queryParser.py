@@ -11,9 +11,45 @@ import os
 import rankExecutor as rExe
 import clusterExecutor as cExe
 import pathExecutor as pExe
+import queryTree
 import time
+import queryOptimiser #import query optimiser
+import sys
 #this array is used to store each function and its related result table name
 graphQueryAndResult = dict()
+
+'''
+Execute graph queries.
+
+@author: Chong Feng
+'''
+def queryExecutor(node, conn, cur):
+
+    resultTableName = ""
+
+    executeCommand = node.getNodeOriginalQuery()
+    commands = getGQueryInfo(executeCommand, 0, conn, cur)
+    print "Execution commands: ", commands
+
+    hashValue = hash(executeCommand)
+    positiveHash = hashValue + sys.maxsize+1 #Eliminate negative hash value as "-" cannot be table name
+
+    if(executeCommand.startswith("rank")):
+        resultTableName = "rank_"+ node.getNodeID()+"_"+str(positiveHash)
+        commands.append(resultTableName)
+        rExe.processCommand(commands, conn, cur)
+    elif(executeCommand.startswith("cluster")):
+        resultTableName = "cluster_"+ node.getNodeID()+"_"+str(positiveHash)
+        commands.append(resultTableName)
+        cExe.processCommand(commands, conn, cur)
+    elif(executeCommand.startswith("path")):
+        resultTableName = "path_"+ node.getNodeID()+"_"+str(positiveHash)
+        commands.append(resultTableName)
+        pExe.processCommand(commands, conn, cur)
+
+
+    return resultTableName
+
 
 #Differentiates three types of graph sub-queries
 def queryAnalyse(executeCommand, conn, cur):
@@ -41,7 +77,11 @@ def queryAnalyse(executeCommand, conn, cur):
             #print "graphQuery ", graphQuery  #for debug
             
             #not run the same graph operation again
-            if graphQuery not in graphQueryAndResult:
+            '''
+            Check if the graph query has been executed
+            @author: Chong Feng
+            '''
+            if (queryOptimiser.checkGraphQueryAndResult(graphQuery) == False):
                 resultTableName = "rank_" + rankCommands[0] + str(operatorID)
                 rankCommands.append(resultTableName) #the last element is the result table name
                 rExe.processCommand(rankCommands, conn, cur)
@@ -64,7 +104,11 @@ def queryAnalyse(executeCommand, conn, cur):
             #print "graphQuery ", graphQuery  #for debug
             
             #not run the same graph command again
-            if graphQuery not in graphQueryAndResult:
+            '''
+            Check if the graph query has been executed
+            @author: Chong Feng
+            '''
+            if (queryOptimiser.checkGraphQueryAndResult(graphQuery) == False):
                 resultTableName = "cluster_" + clusterCommands[0] + str(operatorID) #the last element is tableName
                 clusterCommands.append(resultTableName)
                 cExe.processCommand(clusterCommands, conn, cur)
@@ -87,7 +131,11 @@ def queryAnalyse(executeCommand, conn, cur):
             #print "graphQuery ", graphQuery  #for debug
             
             #not run the same graph command again
-            if graphQuery not in graphQueryAndResult:
+            '''
+            Check if the graph query has been executed
+            @author: Chong Feng
+            '''
+            if (queryOptimiser.checkGraphQueryAndResult(graphQuery) == False):
                 resultTableName = "path_" + pathCommands[0] + str(operatorID) #the last element is tableName
                 pathCommands.append(resultTableName)
                 pExe.processCommand(pathCommands, conn, cur)
@@ -95,8 +143,15 @@ def queryAnalyse(executeCommand, conn, cur):
             #print "pathCommands ", pathCommands  #for debug
             
     #rewrite the query
-    for eachStr in graphQueryAndResult.keys():
-        executeCommand = executeCommand.replace(eachStr,graphQueryAndResult.get(eachStr))
+    #for eachStr in graphQueryAndResult.keys():
+        #executeCommand = executeCommand.replace(eachStr,graphQueryAndResult.get(eachStr))
+
+    '''
+    Rewrite the query
+    @author: Chong Feng
+    '''
+    for eachStr in queryOptimiser.graphQueryAndResult.keys():
+        executeCommand = executeCommand.replace(eachStr,queryOptimiser.graphQueryAndResult.get(eachStr))
     return executeCommand
     
 
