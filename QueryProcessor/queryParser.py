@@ -85,7 +85,7 @@ def queryAnalyse(executeCommand, conn, cur):
                 resultTableName = "rank_" + rankCommands[0] + str(operatorID)
                 rankCommands.append(resultTableName) #the last element is the result table name
                 rExe.processCommand(rankCommands, conn, cur)
-                graphQueryAndResult[graphQuery] = resultTableName
+                queryOptimiser.setGraphQueryAndResult(graphQuery, resultTableName)
             #print "rankCommands ", rankCommands  #for debug
         
         if each.lower().startswith("cluster("):
@@ -112,7 +112,7 @@ def queryAnalyse(executeCommand, conn, cur):
                 resultTableName = "cluster_" + clusterCommands[0] + str(operatorID) #the last element is tableName
                 clusterCommands.append(resultTableName)
                 cExe.processCommand(clusterCommands, conn, cur)
-                graphQueryAndResult[graphQuery] = resultTableName
+                queryOptimiser.setGraphQueryAndResult(graphQuery, resultTableName)
             #print "clusterCommands ", clusterCommands  #for debug
         
         if each.lower().startswith("path("):
@@ -139,7 +139,7 @@ def queryAnalyse(executeCommand, conn, cur):
                 resultTableName = "path_" + pathCommands[0] + str(operatorID) #the last element is tableName
                 pathCommands.append(resultTableName)
                 pExe.processCommand(pathCommands, conn, cur)
-                graphQueryAndResult[graphQuery] = resultTableName
+                queryOptimiser.setGraphQueryAndResult(graphQuery, resultTableName)
             #print "pathCommands ", pathCommands  #for debug
             
     #rewrite the query
