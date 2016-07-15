@@ -60,9 +60,25 @@ def getGraphQueryAndResult(graphQuery):
 
 #Preprocess queries
 def queryPreProcess(query):
-	preProcessedQuery = re.sub('\s+',' ',query.lower().replace("\n"," ")).strip()	
+	preProcessedQuery = re.sub('\s+',' ',query.lower().replace("\n"," ")).strip()
+	ori_query = re.sub('\s+',' ',query.replace("\n"," ")).strip()
+	#print "====================" + preProcessedQuery
+	#print "====================" + ori_query	
+	#print
+	
+	flag = 1;
+	end_index  = 0;
+	for each in ori_query:
+		if each == "'" :
+			flag += 1
+			if flag % 2 != 0:
+				start_index = ori_query.index("'", end_index + 1)
+				end_index = ori_query.index("'", start_index + 1)
+				preProcessedQuery = preProcessedQuery.replace(preProcessedQuery[start_index + 1 : end_index], ori_query[start_index + 1 : end_index])
+				#print ori_query[start_index + 1 : end_index]
+	
+	#print "=========after===========" + preProcessedQuery
 	return preProcessedQuery
-
 
 
 
