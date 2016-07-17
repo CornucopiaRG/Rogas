@@ -5,18 +5,17 @@
 #   Author: Mojtaba (Omid) Rezvani              #
 #################################################
 
-import os
 import sys
-import commands
 from os.path import isfile, join
 
 
-# Our graph is a simple data structure: a list of edge lists, aka adjacency list
+# Our graph is a simple data structure: a list of lists, adjacency list
 graph = []
 
 # Let's read the graph from a file that has the list of edges. Note that the first
 #   line does not include the number of vertics and edges
 edge_list_file = sys.argv[1]
+
 with open(edge_list_file) as edges:
     for line in edges:
         e = [int(v) for v in line.split()]
@@ -26,6 +25,8 @@ with open(edge_list_file) as edges:
         graph[e[0]].append(e[1])
         graph[e[1]].append(e[0])
 edges.close()
+
+
 
 ## kcore detection begins here
 # Let's store the degrees of vertices
