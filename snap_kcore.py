@@ -32,3 +32,4 @@ snap.SaveEdgeList(KCore, 'mygraph.txt')
 #for each in KCore.Nodes():
    # H.AddDat(each.GetId(), "blue")
 #snap.SaveGViz(KCore, "Graph1.dot", "Directed Random Graph", True, H)
+print "operating time is ", time.time() - start_time
