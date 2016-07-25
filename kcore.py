@@ -2,6 +2,7 @@
 
 #################################################
 #   This code finds k-cores of a given graph    #
+#   It also queries vertices in k-cores         #
 #   Author: Mojtaba (Omid) Rezvani              #
 #################################################
 
@@ -123,6 +124,7 @@ class Graph:
                 qq += 1
         return connected_component_of_v
                 
+
     # Queries a set of vertices among kcores and finds the largest k for which a kcore includes all vertices in the query
     def query_kcores(query_vertices):
         k = 0
@@ -142,7 +144,6 @@ class Graph:
 
         # Get ready to output the community
         vertices_in_community = [i for i in range(0, len(prev_map)) if prev_map[i]==prev_map[query_vertices[0]]]
-
         return vertices_in_community
 
 
