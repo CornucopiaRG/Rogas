@@ -126,7 +126,9 @@ class Graph:
     # Queries a set of vertices among kcores and finds the largest k for which a kcore includes all vertices in the query
     def query_kcores(query_vertices):
         k = 0
+        # This is a flag, determining whether we can still increase the k in kcore or we should stop and output the kcore
         must_decrease_k = 0
+        # In the following loop, we find a k-core, and if the k-core includes all query vertices, we increase k to see if (k+1)-core also includes all of them or not. If (k+1)-core includes all query vertices, we continue increasing k, otherwise, we stop there and output the k-core that included all query vertices
         while must_decrease_k == 0:
             k += 1
             make_kcore(k)
