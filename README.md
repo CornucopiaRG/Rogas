@@ -72,11 +72,7 @@ You can change the source code of the pylsytable as follow:(the path in Ubuntu n
 * change " return ' ' * prefix + str +' ' * suffix " (center alignment ) as " return str + ' ' * prefix +' ' * suffix " (left alignment)
 
 ## Contributors
-Instructor: Qing Wang (*qing.wang@anu.edu.au*) 
-<br>
-<br>
-Principal Developer:
 * Minjian Liu (*minjian.liu@anu.edu.au*): design the system framework, the query language and the Rogas logo; construct the data model; implement the query processing; assist the GUI design. <br>
 * Yan Xiao (*xiaoyanict@foxmail.com*): design and implement the GUI; implement the visualisation of graph operations. <br>
 * Omid Rezvani (*mojtaba.rezvani@anu.edu.au*): implement the local community search functionality. <br>
-* Chong Feng (*u4943054@anu.edu.au*): build the node-tree data structure and optimize the query processing using caches <br>
+* Chong Feng (*u4943054@anu.edu.au*): build the node-tree data structure; optimize the query processing using caches <br>
