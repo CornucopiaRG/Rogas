@@ -16,8 +16,8 @@ from pylsy import pylsytable #for print table
 
     #Here is connect to your PostgreSQL
     #Change you database, user and port here
-db = "acm_small"
-dbUser = "minjian"
+db = "test"
+dbUser = "fengchong"
 dbPort = 5432
     
 conn =  psycopg2.connect(database=db, user=dbUser, port=dbPort)

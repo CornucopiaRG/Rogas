@@ -5,6 +5,7 @@ Tree Structure to store query tree.
 
 import queryParser
 import queryOptimiser
+import re
 
 class queryNode:
 	def __init__(self,queryData,nodeID=None, queryType=None):
@@ -126,9 +127,13 @@ class queryNode:
 
 				#Replace the node ID in the parent query with the execution table name
 				if(self.parent != None):
-					self.parent.addRewrittenQuery(self.parent.getNodeRewrittenQuery().replace(self.queryID,resultTableName))
+					#self.parent.addRewrittenQuery(self.parent.getNodeRewrittenQuery().replace(self.queryID,resultTableName))
+					sub = re.sub(r'\b'+self.queryID+'\b',resultTableName,self.parent.getNodeRewrittenQuery())
+					self.parent.addRewrittenQuery(re.sub(r'\b'+self.queryID+r'\b',resultTableName,self.parent.getNodeRewrittenQuery()))
+					print "Debugging: ", sub
 					parent = self.parent
 					
+
 					while(parent.parent!= None):
 						parent.parent.addRewrittenQuery(parent.parent.getNodeRewrittenQuery().replace(parent.queryID,parent.getNodeRewrittenQuery()))
 						parent = parent.parent
@@ -138,10 +143,17 @@ class queryNode:
 				#Replace the node ID in the parent query with the execution table name
 				if(self.parent != None):
 					cachedTableName = queryOptimiser.getGraphQueryAndResult(self.getNodeOriginalQuery())
-					self.parent.addRewrittenQuery(self.parent.getNodeRewrittenQuery().replace(self.queryID,cachedTableName))
-
+					#self.parent.addRewrittenQuery(self.parent.getNodeRewrittenQuery().replace(self.queryID,cachedTableName))
+					self.parent.addRewrittenQuery(re.sub(r'\b'+self.queryID+r'\b',cachedTableName,self.parent.getNodeRewrittenQuery()))
 					parent = self.parent
-					
+					sub = re.sub(r'\b'+self.queryID+'\b',cachedTableName,self.parent.getNodeRewrittenQuery())
+					print sub
+
 					while(parent.parent!= None):
 						parent.parent.addRewrittenQuery(parent.parent.getNodeRewrittenQuery().replace(parent.queryID,parent.getNodeRewrittenQuery()))
 						parent = parent.parent
+
+
+
+
+
