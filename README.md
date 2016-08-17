@@ -90,7 +90,7 @@ We also make use of Bootstrap(http://getbootstrap.com/), D3.js(https://d3js.org)
 
 ## Future Work
 - 1) find a more informative naming strategy for different query tabs
-- 2) improve the graph visualisation for large graphs (million or billion nodes), including implementing good layouts and improve the efficiency 
+- 2) improve the graph visualisation for large graphs (million or billion nodes), including implementing good layouts and improving the efficiency 
 - 3) make the visualisation for PATH operations more informative, in particular of dealing with multiple paths
 - 4) add more functions about user interaction, such as the content of graphs can correspondingly change when doing zoom-in/out
 - 5) build an algorithm store that includes different types of algorithms for network analysis 
@@ -106,6 +106,6 @@ Qing Wang (*qing.wang@anu.edu.au*)
 
 ## Contributors
 - Minjian Liu (*minjian.liu@anu.edu.au*): design the system framework, the query language and the Rogas logo; construct the relation-graph hybrid data model; implement the query processing; implement the prototype GUI (the GUI shown in the VLDB2016 demo paper -- Rogas: A Declarative Framework for Network Analytics ), supervise the work of GSoC2016-ShallYan.
-- Yan Xiao (*xiaoyanict@foxmail.com*): design and implement the Web GUI (the work of GSoC2016-ShallYan), design and implement the visualisation of graph operations(CREATE, RANK, PATH, CLUSTER), design and implement the backend server and modify Rogas for connecting to front-end.
+- Yan Xiao (*xiaoyanict@foxmail.com*): design and implement the Web GUI (the work of GSoC2016-ShallYan), design and implement the visualisation of graph operations(CREATE, RANK, PATH, CLUSTER), design and implement the backend server and modify the Rogas' query engine in order to fitting the front-end.
 - Omid Rezvani (*mojtaba.rezvani@anu.edu.au*): implement the local community search functionality.
 - Chong Feng (*u4943054@anu.edu.au*): implment the node-tree data structure and query caches for optimisation.
