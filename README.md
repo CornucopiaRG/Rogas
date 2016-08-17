@@ -106,6 +106,6 @@ Qing Wang (*qing.wang@anu.edu.au*)
 
 ## Contributors
 - Minjian Liu (*minjian.liu@anu.edu.au*): design the system framework, the query language and the Rogas logo; construct the relation-graph hybrid data model; implement the query processing; implement the prototype GUI (the GUI shown in the VLDB2016 demo paper -- Rogas: A Declarative Framework for Network Analytics ), supervise the work of GSoC2016-ShallYan.
-- Yan Xiao (*xiaoyanict@foxmail.com*): design and implement the new GUI (the work of GSoC2016-ShallYan); implement the visualisation of graph operations.
+- Yan Xiao (*xiaoyanict@foxmail.com*): design and implement the Web GUI (the work of GSoC2016-ShallYan), design and implement the visualisation of graph operations(CREATE, RANK, PATH, CLUSTER), design and implement the backend server and modify Rogas for connecting to front-end.
 - Omid Rezvani (*mojtaba.rezvani@anu.edu.au*): implement the local community search functionality.
 - Chong Feng (*u4943054@anu.edu.au*): implment the node-tree data structure and query caches for optimisation.
