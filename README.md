@@ -92,14 +92,17 @@ We also make use of Bootstrap(http://getbootstrap.com/), D3.js(https://d3js.org)
 - 1) find a more informative naming strategy for different query tabs
 - 2) improve the graph visualisation for large graphs (million or billion nodes), including implementing good layouts and improve the efficiency 
 - 3) make the visualisation for PATH operations more informative, in particular of dealing with multiple paths
-- 4) add more functions about user interaction, such as the content of graphs can correspondingly change when doing zoom-in/out.
--5) building an algorithm store that includes different types of algorithms for network analysis 
+- 4) add more functions about user interaction, such as the content of graphs can correspondingly change when doing zoom-in/out
+- 5) building an algorithm store that includes different types of algorithms for network analysis 
 
 ## More Information
 More details about the Rogas, please refer to 
 the thesis "Towards a Unified Framework for Network Analytics" collected in 
 Australian National University (http://users.cecs.anu.edu.au/~u5170295/publications/thesis-minjian.pdf). You can also 
 contact *minjian.liu@anu.edu.au* or *qing.wang@anu.edu.au* for more information.
+
+## Instructor
+Qing Wang (*qing.wang@anu.edu.au*)
 
 ## Contributors
 - Minjian Liu (*minjian.liu@anu.edu.au*): design the system framework, the query language and the Rogas logo; construct the relation-graph hybrid data model; implement the query processing; implement the prototype GUI (the GUI shown in the VLDB2016 demo paper -- Rogas: A Declarative Framework for Network Analytics ), supervise the work of GSoC2016-ShallYan.
