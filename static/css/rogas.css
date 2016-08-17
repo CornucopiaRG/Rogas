@@ -1,0 +1,48 @@
+body {
+    margin-top: 120px;
+}
+
+@media(min-width:768px) {
+    body {
+        margin-top: 50px;
+    }
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding: 10px;
+    }
+}
+
+.logo{
+    padding: 8px;
+}
+
+.logo-img {
+    padding-left: 20px;
+    height: 100%;
+}
+
+.top-nav {
+    padding: 0 25px;
+}
+
+.top-nav>li {
+    display: inline-block;
+    float: left;
+}
+
+.top-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;
+}
+
+.info-label {
+    display: inline-block;
+}
+
+.progress-bar {
+    -webkit-transition: none;
+    transition: none;
+}

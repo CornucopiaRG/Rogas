@@ -6,6 +6,7 @@ After getting results from SNAP or Graph-tool, the rankExecutor will transform t
 '''
 import snap
 import time
+import config
 import graph_tool.all as gt
 import numpy
 import os
@@ -144,7 +145,8 @@ def pageRank(rankCommands, Graph, conn, cur):
 
 #for betweenness measure
 def betweenness(rankCommands, Graph, conn, cur):
-    gt.openmp_set_num_threads(4) #enable 4 threads for runing algorithm
+    if config.IS_GRAPH_TOOL_OPENMP:
+        gt.openmp_set_num_threads(4) #enable 4 threads for runing algorithm
     before_time = time.time()
     vp = gt.betweenness(Graph.g)[0] #betweenness returns two property map (vertex map and edge map) [0] means use vertex map
     values = vp.get_array()
@@ -157,7 +159,8 @@ def betweenness(rankCommands, Graph, conn, cur):
     
 #for closeness measure
 def closeness(rankCommands, Graph, conn, cur):
-    gt.openmp_set_num_threads(4) #enable 4 threads for runing algorithm
+    if config.IS_GRAPH_TOOL_OPENMP:
+        gt.openmp_set_num_threads(4) #enable 4 threads for runing algorithm
     before_time = time.time()
     c = gt.closeness(Graph.g) 
     values = c.get_array()

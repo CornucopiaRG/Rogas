@@ -11,16 +11,19 @@ import os
 import rankExecutor as rExe
 import clusterExecutor as cExe
 import pathExecutor as pExe
+import helper
 import time
-#this array is used to store each function and its related result table name
-graphQueryAndResult = dict()
 
 #Differentiates three types of graph sub-queries
-def queryAnalyse(executeCommand, conn, cur):
+def queryAnalyse(executeCommand, conn, cur, mat_graph_cache, graphQueryAndResult):
     lowerCaseCommand = executeCommand.lower()
     commandList = executeCommand.split()
     commandList.reverse()  #so that inner sub-queries can be executed first
     
+    #keep all the rank/cluster/path operator, but now only the most outside one is used
+    #tuple: (graph_operator, graph_type, graph_name, result_table_name, graph_op_condition)
+    graphOperationList = [] 
+
     #the operatorID corresponds to the order that graph operators occur in the query
     operatorID = 0
     
@@ -35,18 +38,22 @@ def queryAnalyse(executeCommand, conn, cur):
             
             graphIndex = lowerCaseCommand.rindex("rank",0, indexMark)
             indexMark = graphIndex
-            rankCommands = getGQueryInfo(executeCommand, graphIndex, conn, cur)
-            
-            graphQuery = getGQuery(executeCommand, graphIndex, rankCommands[-1])
+            rankCommands = getGQueryInfo(executeCommand, graphIndex, conn, cur, mat_graph_cache)
+
+            graphQuery = getGQuery(executeCommand, graphIndex, rankCommands[-2])
             #print "graphQuery ", graphQuery  #for debug
             
             #not run the same graph operation again
             if graphQuery not in graphQueryAndResult:
-                resultTableName = "rank_" + rankCommands[0] + str(operatorID)
+                resultTableName = "rank_" + rankCommands[0] + rankCommands[1] + str(operatorID)
                 rankCommands.append(resultTableName) #the last element is the result table name
                 rExe.processCommand(rankCommands, conn, cur)
                 graphQueryAndResult[graphQuery] = resultTableName
             #print "rankCommands ", rankCommands  #for debug
+
+            #tuple: (graph_operator, graph_type, graph_name, result_table_name, graph_op_condition)
+            graphOperationList.append(('rank', rankCommands[2], rankCommands[0], graphQueryAndResult[graphQuery], rankCommands[4]))
+            
         
         if each.lower().startswith("cluster("):
             operatorID += 1
@@ -58,18 +65,22 @@ def queryAnalyse(executeCommand, conn, cur):
                 
             graphIndex = lowerCaseCommand.rindex("cluster",0, indexMark)
             indexMark = graphIndex
-            clusterCommands = getGQueryInfo(executeCommand, graphIndex, conn, cur)
-            
-            graphQuery = getGQuery(executeCommand, graphIndex, clusterCommands[-1])
+            clusterCommands = getGQueryInfo(executeCommand, graphIndex, conn, cur, mat_graph_cache)
+
+            graphQuery = getGQuery(executeCommand, graphIndex, clusterCommands[-2])
             #print "graphQuery ", graphQuery  #for debug
             
             #not run the same graph command again
             if graphQuery not in graphQueryAndResult:
-                resultTableName = "cluster_" + clusterCommands[0] + str(operatorID) #the last element is tableName
+                resultTableName = "cluster_" + clusterCommands[0] + clusterCommands[1] + str(operatorID) #the last element is tableName
                 clusterCommands.append(resultTableName)
                 cExe.processCommand(clusterCommands, conn, cur)
                 graphQueryAndResult[graphQuery] = resultTableName
             #print "clusterCommands ", clusterCommands  #for debug
+
+            #tuple: (graph_operator, graph_type, graph_name, result_table_name, graph_op_condition)
+            graphOperationList.append(('cluster', clusterCommands[2], clusterCommands[0], graphQueryAndResult[graphQuery], clusterCommands[4]))
+            
         
         if each.lower().startswith("path("):
             operatorID += 1
@@ -81,27 +92,52 @@ def queryAnalyse(executeCommand, conn, cur):
             
             graphIndex = lowerCaseCommand.rindex("path",0, indexMark)
             indexMark = graphIndex + 4
-            pathCommands = getGQueryInfo(executeCommand, graphIndex, conn, cur)
-            
-            graphQuery = getGQuery(executeCommand, graphIndex, pathCommands[-1])
+            pathCommands = getGQueryInfo(executeCommand, graphIndex, conn, cur, mat_graph_cache)
+
+            #graphQuery = getGQuery(executeCommand, graphIndex, pathCommands[-2])
+            '''
+            this is a temp solution to handle the issue about the path operation: order-by and limit clauses need to be placed before the where clause
+            so that the visualisation part can get the abutting order-by and limit clauses.
+            Once the issue has been fixed, need to uncomment the sentence above
+            '''
+            graphQuery_tuple = getGQuery(executeCommand, graphIndex, pathCommands[-2])
+            graphQuery = graphQuery_tuple[0]
+            ol_command = graphQuery_tuple[1]
             #print "graphQuery ", graphQuery  #for debug
             
             #not run the same graph command again
             if graphQuery not in graphQueryAndResult:
-                resultTableName = "path_" + pathCommands[0] + str(operatorID) #the last element is tableName
+                pathPara = str(hash(graphQuery))[1:]
+                resultTableName = "path_" + pathCommands[0] + pathPara + str(operatorID) #the last element is tableName
                 pathCommands.append(resultTableName)
-                pExe.processCommand(pathCommands, conn, cur)
+                pExe.processCommand(pathCommands, conn, cur, graphQueryAndResult)
                 graphQueryAndResult[graphQuery] = resultTableName
             #print "pathCommands ", pathCommands  #for debug
-            
+
+            #tuple: (graph_operator, graph_type, graph_name, result_table_name, graph_op_condition)
+            graphOperationList.append(('path', pathCommands[2], pathCommands[0], graphQueryAndResult[graphQuery], pathCommands[4]))
+        
     #rewrite the query
     for eachStr in graphQueryAndResult.keys():
         executeCommand = executeCommand.replace(eachStr,graphQueryAndResult.get(eachStr))
-    return executeCommand
-    
 
+    '''
+    this is a temp solution to handle the issue about the path operation: order-by and limit clauses need to be placed before the where clause
+    so that the visualisation part can get the abutting order-by and limit clauses.
+    Once the issue has been fixed, need to comment the sentence below
+    '''
+    if "path_" in executeCommand:
+        print "ol_command: ", ol_command
+        executeCommand = executeCommand.replace(";", " " + ol_command + ";")
+        print executeCommand
+
+    #get the most outside graph operator
+    outside_graph_info = graphOperationList[-1]
+    
+    return executeCommand, outside_graph_info
+    
 #use a list to store graph info like src, des, type of graphs, measurements/algorithms used in the operation, the related table name
-def getGQueryInfo(executeCommand, graphIndex, conn, cur):
+def getGQueryInfo(executeCommand, graphIndex, conn, cur, mat_graph_cache):
     matGraphDir = os.environ['HOME'] + "/RG_Mat_Graph/"
     tmpGraphDir = "/dev/shm/RG_Tmp_Graph/"
     
@@ -161,15 +197,16 @@ def getGQueryInfo(executeCommand, graphIndex, conn, cur):
             myrow = cur.fetchone()
             gQueryInfo.append(myrow[0]) #get graph Type
             
-            graphFile = open(matGraphDir + graphName, 'w')
-            cur.execute("select * from %s;" % (graphName))
-            conn.commit()
-            rows = cur.fetchall()
-            startW_time = time.time()
-            for i in rows:
-                graphFile.write(str(i[0]) + '\t' + str(i[1]) + os.linesep)
-            graphFile.close()     
-            print "Graph writing time: ", time.time() - startW_time 
+            if graphName not in mat_graph_cache:
+                graphFile = open(matGraphDir + graphName, 'w')
+                cur.execute("select * from %s;" % (graphName))
+                rows = cur.fetchall()
+                startW_time = time.time()
+                for i in rows:
+                    graphFile.write(str(i[0]) + '\t' + str(i[1]) + os.linesep)
+                graphFile.close()
+                mat_graph_cache.append(graphName)
+                print "Graph writing time: ", time.time() - startW_time 
             
             #print "find the view"
             gQueryInfo.append(commandArray)
@@ -177,6 +214,38 @@ def getGQueryInfo(executeCommand, graphIndex, conn, cur):
         else:
             raise RuntimeError, "No such graph!!"
         
+    #get limit and order condition
+    graphCondition = ""
+    lowerWhereClause = whereClause.lower()
+    whereClauseCommands = lowerWhereClause.split()
+    if whereClauseCommands[0] == 'order' or whereClauseCommands[0] == 'limit':
+        #end search if meet with "where clause"
+        whereIndex = helper.findWordInString('where', lowerWhereClause)
+        searchEndIndex = whereIndex if whereIndex != -1 else len(lowerWhereClause)
+
+        #end condition if meet with ")" or ";", and ")" is not matched in ORDER BY clause
+        resultEndIndex = searchEndIndex 
+        leftBracketNum = 0
+        for i in range(searchEndIndex):
+            if lowerWhereClause[i] == '(':
+                leftBracketNum += 1
+            elif lowerWhereClause[i] == ')':
+                if leftBracketNum > 0:
+                    leftBracketNum -= 1
+                else:
+                    resultEndIndex = i
+                    break
+            elif lowerWhereClause[i] == ';':
+                resultEndIndex = i
+                break
+        
+        #if not contain "limit", don't use it 
+        graphCondition = whereClause[0:resultEndIndex].strip()
+        if helper.findWordInString('limit', graphCondition.lower()) == -1:
+            graphCondition = ""
+
+    gQueryInfo.append(graphCondition)  
+
     return gQueryInfo
         
     
@@ -253,8 +322,27 @@ def getGQuery(executeCommand, graphIndex, commandArray):
                 queryEndIndex = queryIndex + len(eachQuery[-1])
         lastBracketIndex = executeCommand.index(")", queryEndIndex)
         command = executeCommand[graphIndex : lastBracketIndex+1]
-        return command
-                
+        
+        '''
+        #This part of code is for setting up the syntax limit for path operation.the order  and limit clause should be placed behind the where clause.
+        lowCommand = command.lower()
+        w_index = lowCommand.index("where")
+        if "order" in command.lower()[ : w_index] or "limit" in command.lower()[ : w_index]:
+            raise RuntimeError, "Syntax errors: clauses about order by and limit should be placed behind the where clause."       
+        '''
+        
+        #return command
+        '''
+        this is a temp solution to handle the issue about the path operation: order-by and limit clauses need to be placed before the where clause
+        so that the visualisation part can get the abutting order-by and limit clauses.
+        Once the issue has been fixed, need to uncomment the sentence above
+        '''
+        lowCommand = command.lower()
+        bracket_index = lowCommand.index(")")
+        w_index = lowCommand.index("where")
+        ol_command = lowCommand[bracket_index + 1 : w_index].strip()
+        return command, ol_command
+    
     elif lowerCaseCommand[graphIndex] == "r" or lowerCaseCommand[graphIndex] == "c": # for rank and cluster operations
         if len(commandArray) == 0:  #for materialized graph
             leftBracketIndex = executeCommand.index('(', graphIndex)

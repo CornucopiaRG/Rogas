@@ -1,8 +1,6 @@
 #![Logo](https://cecs.anu.edu.au/sites/default/files/styles/anu_doublenarrow_440_scale/public/images/rogas-web.jpg?itok=JfEfhc1_)
-Rogas is a project for Network Analytics
+Rogas(https://github.com/CornucopiaRG/Rogas) is a project for Network Analytics
 
-## Latest news 
-Rogas is now joining the Google Summer of Code 2016. In the following months, we aim to develop a new GUI for Rogas with more comprehensive network visualisation functions and also implement "Local Community Detection Search" for Rogas. We will upload new source code after the new GUI and functions have been achieved. For who wants to have a sneak peak, please refer to https://github.com/shallyan/GSoC-Rogas.
 
 ## Introduction
 Rogas not only can provides a high-level declarative query language to 
@@ -20,59 +18,91 @@ network analysis queries using various graph systems and
 their supporting algorithms.
 <br>
 <br>
-Here is the prototype implementation of the Rogas. The prototype
-is developed in **Python 2.7** with the official PostgreSQL client library – libpq. 
-We use **Psycopg**, the current mature wrapper for the libpq, as the 
-PostgreSQL adapter. For the GUI, we use **TkInter**, **PIL**, and **pylsytable**
-for window development, image formating and table-like printing. In terms of 
-graph algorithms, currently, we take advantage of **Graph-tool**, **SNAP** and 
-**NetworkX** for algorithms support.
-<br>
-<br>
-Here are the links for the python packages mentioned above:
-<br>
-(suggest to use Ubuntu or other Linux systems, Mac and Windows are hard to install all these packages)
+
+## Main Features
+- Database info panel can show the schema information of relations and graphs in the database
+- Query input panel can be extended to a larger space for complicated queries
+- Show queries and their results as browser-tab style
+- Asynchronous execution with loading animation
+- Support regular relational queries and graph queries with graph operations (RANK, CLUSTER and PATH) 
+- Show the result of a large table in pages 
+- Support visualisation for graph queries with graph operations (RANK, CLUSTER and PATH) 
+- Support interactive operations on graphs (drag, double click, zoom in/out) 
+- Support relation - graph data mapping
+
+## Work Screenshots
+- Relational result for a query with the RANK operation
+![rank_relation](http://s1.sinaimg.cn/orignal/0020hfTezy747m91i8gd0&690)
+
+- Graphical result for a query with the RANK operation
+![rank_graph](http://s14.sinaimg.cn/orignal/0020hfTezy747m91UsZ6d&690)
+
+- Relational result for a query with the CLUSTER operation
+![cluster_relation](http://s1.sinaimg.cn/orignal/0020hfTezy747m8V1EA90&690)
+
+- Graphical result for a query with the CLUSTER operation
+![cluster_graph](http://s9.sinaimg.cn/orignal/0020hfTezy747m91GFG48&690)
+
+- Relational result for a query with the PATH operation
+![path_relation](http://s2.sinaimg.cn/orignal/0020hfTezy747r2uTuxd1&690)
+
+- Graphical result for a query with the PATH operation & Relation-Graph Mapping
+![path_graph](http://s10.sinaimg.cn/orignal/0020hfTezy747r2txI5c9&690)
+
+- Database Info
+![dbinfo](http://s8.sinaimg.cn/orignal/0020hfTezy747m8UOure7&690)
+
+## Process of Graph Visualization
+### Graph Rank Operation 
+- 1) Get targeted nodes based on the RANK result
+- 2) Find nodes on the shortest path among the selected nodes
+- 3) Find nodes around the selected nodes
+
+### Graph Cluster Operation 
+- 1) Rescale the size of each cluster according to the proportion
+- 2) Score each node according to the inner-cluster edges, cluster-cluster edges and target node's degree
+- 3) Find the max connected component in each cluster
+- 4) Get certain amount (can be specified in the setting) of nodes in the max connected component from high score to low score
+- 5) Find neighbor nodes around the selected nodes
+
+### Graph Path Operation 
+- 1) Get targeted nodes based on the PATH result
+- 2) Find nodes around the selected nodes
+
+## Dependencies 
+* Python 2.7
+* Tornado: http://www.tornadoweb.org/en/stable/
+* Postgresql: https://www.postgresql.org/ 
 * Psycopg: http://initd.org/psycopg/
-* TkInter: https://wiki.python.org/moin/TkInter
-* Pillow for PIL: https://python-pillow.github.io/  (Require Pillow 3.1 or above)
-* pylsytable: https://github.com/Leviathan1995/Pylsy?files=1
 * Graph-tool: http://graph-tool.skewed.de/
 * SNAP: http://snap.stanford.edu/snappy/index.html
 * NetworkX: http://networkx.github.io/  
 
-<br>
-Before runing the prototype, ensure the system is Ubuntu and all the external 
-python packages mentioned above are installed correctly. 
+Note: If you use Mac OS, the Graph-tool installed doesn't support OpenMP by default, you can change the  IS\_GRAPH\_TOOL\_OPENMP = False in rogas/config.py.
 <br>
 <br>
-**Notice that pillow is 
-the latest package for PIL and it is not compatible with the old PIL package. 
-If your have already had PIL in your python dist-packages (/usr/lib/python2.7/dist-packages/),
-please delete the original PIL and install the new Pillow package. If you are using Eclipse or 
-other IDE, I suggest to use the source code to install Pillow so that the unresolved import 
-issues of the IDE can be solved.**
-<br>
-<br>
-You also need to change the code of the *queryConsole.start()* method a bit 
-to connect your own PostgreSQL database. Then you can start the prototype 
-by running the *GUI_Console* program.
-<br>
-<br>
+We also make use of Bootstrap(http://getbootstrap.com/), D3.js(https://d3js.org) and ExpandingTextareas(https://github.com/bgrins/ExpandingTextareas), which are integrated into the system so  you don't need install them by yourself.
+
+## How to Run
+- Set up your database information in rogas.config.py to connect to Postgresql
+- Python run.py
+- Open the browser by entering http://localhost:12345/
+
+## Future Work
+- 1) find a more informative naming strategy for different query tabs
+- 2) improve the graph visualisation for large graphs (million or billion nodes), including implementing good layouts and improve the efficiency 
+- 3) make the visualisation for PATH operations more informative, in particular of dealing with multiple paths
+- 4) add more functions about user interaction, such as the content of graphs can correspondingly change when doing zoom-in/out.
+-5) building an algorithm store that includes different types of algorithms for network analysis 
+
+## More Information
 More details about the Rogas, please refer to 
 the thesis "Towards a Unified Framework for Network Analytics" collected in 
 Australian National University (http://users.cecs.anu.edu.au/~u5170295/publications/thesis-minjian.pdf). You can also 
 contact *minjian.liu@anu.edu.au* or *qing.wang@anu.edu.au* for more information.
-<br>
-<br>
-PS: For answering how to change the output of the GUI_Console as left alignment (default is center alignment)
-You can change the source code of the pylsytable as follow:(the path in Ubuntu normally is 
-'/usr/local/lib/python2.7/dist-packages/pylsy/pylsy.py).
-<br>
-* Find the "def _pad_string(self, str, colwidth):" function in the pylsy.py
-* change " return ' ' * prefix + str +' ' * suffix " (center alignment ) as " return str + ' ' * prefix +' ' * suffix " (left alignment)
 
 ## Contributors
-* Minjian Liu (*minjian.liu@anu.edu.au*): design the system framework, the query language and the Rogas logo; construct the relation-graph hybrid data model; implement the query processing; assist the GUI design. <br>
-* Yan Xiao (*xiaoyanict@foxmail.com*): design and implement the GUI; implement the visualisation of graph operations. <br>
-* Omid Rezvani (*mojtaba.rezvani@anu.edu.au*): implement the local community search functionality. <br>
-* Chong Feng (*u4943054@anu.edu.au*): implment the node-tree data structure and query caches for optimisation. <br>
+- Minjian Liu (*minjian.liu@anu.edu.au*): design the system framework, the query language and the Rogas logo; construct the relation-graph hybrid data model; implement the query processing; implement the prototype GUI (the GUI shown in the VLDB2016 demo paper -- Rogas: A Declarative Framework for Network Analytics ), supervise the work of GSoC2016-ShallYan.
+- Yan Xiao (*xiaoyanict@foxmail.com*): design and implement the new GUI (the work of GSoC2016-ShallYan); implement the visualisation of graph operations.
+- Omid Rezvani (*mojtaba.rezvani@anu.edu.au*): implement the local community search functionality.
+- Chong Feng (*u4943054@anu.edu.au*): implment the node-tree data structure and query caches for optimisation.

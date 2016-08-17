@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+
+{% block content %}  
+    <div id="wrapper">
+        {% block navbar %} 
+        {% end %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2">
+                    {% block database_info %}
+                    {% end %}
+                </div>
+                <div class="col-sm-10">
+                    <div class="panel panel-default">
+                        {% block query_tabs %} 
+                        {% end %}
+
+                        {% block query_tab_contents %} 
+                        {% end %}
+
+                        {% block footer %}
+                        {% end %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block navbar %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top top-navbar" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_bar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo"> 
+                <img alt="Rogas" class="logo-img" src={{ static_url("image/logo.png") }}>
+                </img>
+            </a>
+        </div>
+
+        <div id="nav_bar" class="navbar-collapse collapse">
+            <!-- top menu items -->
+            <ul class="nav navbar-right navbar-nav top-nav">
+                <li> 
+                    <a href="#" role="button" data-toggle="modal" data-target="#about_modal" > <strong> About </strong> </a>
+                </li>
+                <li> 
+                    <a href="#" role="button" data-toggle="modal" data-target="#setting_modal" > <strong> Setting</strong> </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="about_modal" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">About</h4>
+                </div>
+                <div class="modal-body">
+                    <p>This is Rogas Project</p>
+                </div>
+                <div class="modal-footer">
+                    <p>Rogas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Setting Modal -->
+    <div class="modal fade" id="setting_modal" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Setting</h4>
+                </div>
+                <div class="modal-body">
+
+                <form class="form-horizontal">
+                    <div class="form-group has-success">
+                        <label for="cluster_node_max_num" class="col-sm-3 control-label">ClusterNodeMaxNum</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="cluster_node_max_num" 
+                                   value={{ setting_dict['CLUSTER_NODE_MAX_NUM'] }}>
+                        </div>
+
+                        <label for="cluster_component_ratio" class="col-sm-3 control-label">ClusterComponentRat</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="cluster_component_ratio"
+                                   value={{ setting_dict['CLUSTER_COMPONENT_RATIO'] }}>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label for="ranked_node_max_num" class="col-sm-3 control-label">RankedNodeMaxNum</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="ranked_node_max_num"
+                                   value={{ setting_dict['RANK_NODE_MAX_NUM'] }}>
+                        </div>
+
+                        <label for="path_max_num" class="col-sm-3 control-label">PathMaxNum</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="path_max_num"
+                                   value={{ setting_dict['PATH_MAX_NUM'] }}>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label for="node_min_size" class="col-sm-3 control-label">NodeMinSize</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="node_min_size"
+                                   value={{ setting_dict['NODE_MIN_SIZE'] }}>
+                        </div>
+
+                        <label for="node_max_size" class="col-sm-3 control-label">NodeMaxSize</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="node_max_size"
+                                   value={{ setting_dict['NODE_MAX_SIZE'] }}>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label for="node_default_size" class="col-sm-3 control-label">NodeDefaultSize</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="node_default_size"
+                                   value={{ setting_dict['NODE_DEFAULT_SIZE'] }}>
+                        </div>
+
+                        <label for="unhighlight_opacity" class="col-sm-3 control-label">UnhighlightOpacity</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="unhighlight_opacity"
+                                   value={{ setting_dict['UNHIGHLIGHT_OPACITY'] }}>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label for="edge_min_width" class="col-sm-3 control-label">EdgeMinWidth</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="edge_min_width"
+                                   value={{ setting_dict['EDGE_MIN_WIDTH'] }}>
+                        </div>
+
+                        <label for="edge_max_width" class="col-sm-3 control-label">EdgeMaxWidth</label>
+                        <div class="col-sm-3">
+                            <input type="number" class="form-control text-center" id="edge_max_width"
+                                   value={{ setting_dict['EDGE_MAX_WIDTH'] }}>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label for="dispaly_node_id" class="col-sm-3 control-label">DisplayNodeID</label>
+                        <div class="col-sm-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="dispaly_node_id" {% if setting_dict['DISPLAY_NODE_ID'] %} checked="checked" {% end %}>
+                                </label>
+                            </div>
+                        </div>
+
+                        <label for="do_visualization" class="col-sm-3 control-label">DoVisualization</label>
+                        <div class="col-sm-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="do_visualization" {% if setting_dict['DO_VISUALIZATION'] %} checked="checked" {% end %}>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick=updateConfig() >Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block database_info %}
+    <div class="panel panel-success">
+        <div class="panel-heading text-center">
+            <h4 class="panel-title">
+                <span class="glyphicon glyphicon-star"> </span>
+                <strong> Database Info </strong>
+            </h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="panel-group" id="database_content">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading text-center">
+                            <a id="relation_core_info" data-toggle="collapse" data-parent="#database_content" href="#database_relation" onclick=relationCoreInfo()>
+                                <span class="glyphicon glyphicon-th"></span> 
+                                <strong> Relation Core </strong>
+                            </a>
+                        </div>
+                        <div id="database_relation" class="panel-collapse collapse">
+                            <div id="label_relation_panel" class="panel-body">
+                                <hr id="relation_sep_line"></hr>
+
+                                <form class="form-horizontal" onkeydown="return disableKeydownSubmit(event);">
+                                    <div class="form-group has-info">
+                                        <div class="input-group col-md-10 col-md-offset-1 input-group-sm">
+                                            <input id="relation_input" type="text" class="form-control" placeholder="Table name"></input>
+                                            <span class="input-group-btn">
+                                                <button id="add_relation_label" class="btn btn-success" type="button">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading text-center">
+                            <a id="graph_view_info" data-toggle="collapse" data-parent="#database_content" href="#database_graph" onclick=graphViewInfo()>
+                                <span class="glyphicon glyphicon-picture"></span> <strong> Graphical View</strong>
+                            </a>
+                        </div>
+                        <div id="database_graph" class="panel-collapse collapse">
+                            <div id="label_graph_panel" class="panel-body">
+                                <hr id="graph_sep_line"></hr>
+
+                                <form class="form-horizontal" onkeydown="return disableKeydownSubmit(event);">
+                                    <div class="form-group has-info">
+                                        <div class="input-group col-md-10 col-md-offset-1 input-group-sm">
+                                            <input id="graph_input" type="text" class="form-control" placeholder="Table name"></input>
+                                            <span class="input-group-btn">
+                                                <button id="add_graph_label" class="btn btn-success" type="button">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block query_tabs %}
+    <div class="panel-heading">
+        <ul id="query_tab" class="nav nav-tabs">
+            <li id="query0" class="active">
+                <a href="#query_content0" data-toggle="tab"> <strong id="query_tab_name0"> Query0 </strong>
+                </a>
+            </li>
+            <li id="query_add">
+                <a role="button">
+                    <span class="glyphicon glyphicon-plus"></span> <strong> Add Tab </strong>
+                </a>
+            </li>
+        </ul>
+    </div>
+{% end %}
+
+{% block query_tab_contents %}
+    <div id="query_tab_content" class="tab-content">
+       <div class="tab-pane fade in active" id="query_content0" >
+           <div class="panel-body">
+               <!-- input panel -->
+               <form class="form-horizontal" id="query_form0" method="post" action="/query">
+                   <div class="form-group has-success">
+                       <div class="col-md-11">
+                           <textarea id="query_text0" class="form-control expanding" rows="1" placeholder="Input query here"></textarea>
+                       </div>
+                       <div class="col-md-1">
+                           <button id="query_btn0" class="btn btn-success" type="button" onclick=runQuery(0) >
+                               <span class="glyphicon glyphicon-expand"></span>
+                           </button>
+                       </div>
+                   </div>
+               </form>
+            </div>
+        </div>
+    </div>
+{% end %}
+
+{% block footer %}
+    <footer>
+        <p>&copy; 2016 Google Summer of Code</p>
+    </footer>
+{% end %}

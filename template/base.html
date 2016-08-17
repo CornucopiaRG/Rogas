@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rogas">
+    <meta name="author" content="Rogas">
+    <link rel="icon" href={{ static_url("image/logo.ico") }}>
+    <link REL="SHORTCUT ICON" HREF={{ static_url("image/logo.ico") }}>
+
+    <title>Welcome to Rogas</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href={{ static_url("bootstrap-3.3.6/css/bootstrap.min.css") }} rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href={{ static_url("css/rogas.css") }} rel="stylesheet">
+
+</head>
+
+<body>
+    {% block content %}
+    {% end %}
+
+    <script src={{ static_url("js/d3.v3.min.js") }}></script>
+    <script src={{ static_url("js/jquery-2.2.4.min.js") }}></script>
+    <script src={{ static_url("bootstrap-3.3.6/js/bootstrap.min.js") }}></script>
+    <script src={{ static_url("js/expanding.js") }}></script>
+    <script src={{ static_url("js/graph_drawer.js") }}></script>
+    <script src={{ static_url("js/dynamic_tab.js") }}></script>
+    <script src={{ static_url("js/database_info.js") }}></script>
+    <script src={{ static_url("js/navigate_bar.js") }}></script>
+
+</body>
+
+</html>
