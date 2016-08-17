@@ -62,7 +62,7 @@ their supporting algorithms.
 - 1) Rescale the size of each cluster according to the proportion
 - 2) Score each node according to the inner-cluster edges, cluster-cluster edges and target node's degree
 - 3) Find the max connected component in each cluster
-- 4) Get certain amount (can be specified in the setting) of nodes in the max connected component from high score to low score
+- 4) Get certain amount (be specified in setting) of nodes in the max connected component from high score to low score
 - 5) Find neighbor nodes around the selected nodes
 
 ### Graph Path Operation 
@@ -93,7 +93,7 @@ We also make use of Bootstrap(http://getbootstrap.com/), D3.js(https://d3js.org)
 - 2) improve the graph visualisation for large graphs (million or billion nodes), including implementing good layouts and improve the efficiency 
 - 3) make the visualisation for PATH operations more informative, in particular of dealing with multiple paths
 - 4) add more functions about user interaction, such as the content of graphs can correspondingly change when doing zoom-in/out
-- 5) building an algorithm store that includes different types of algorithms for network analysis 
+- 5) build an algorithm store that includes different types of algorithms for network analysis 
 
 ## More Information
 More details about the Rogas, please refer to 
