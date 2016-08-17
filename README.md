@@ -32,25 +32,25 @@ their supporting algorithms.
 
 ## Work Screenshots
 - Relational result for a query with the RANK operation
-![rank_relation](http://s1.sinaimg.cn/orignal/0020hfTezy747m91i8gd0&690)
+![rank_relation](http://ww1.sinaimg.cn/large/6d74e8d4gw1f6wrfmwh6dj213j0elgmt.jpg)
 
 - Graphical result for a query with the RANK operation
-![rank_graph](http://s14.sinaimg.cn/orignal/0020hfTezy747m91UsZ6d&690)
+![rank_graph](http://ww1.sinaimg.cn/large/6d74e8d4gw1f6wrfmc4pxj213i0l2n3c.jpg)
 
 - Relational result for a query with the CLUSTER operation
-![cluster_relation](http://s1.sinaimg.cn/orignal/0020hfTezy747m8V1EA90&690)
+![cluster_relation](http://ww1.sinaimg.cn/large/6d74e8d4gw1f6wrfjdsjuj213k0n241u.jpg)
 
 - Graphical result for a query with the CLUSTER operation
-![cluster_graph](http://s9.sinaimg.cn/orignal/0020hfTezy747m91GFG48&690)
+![cluster_graph](http://ww3.sinaimg.cn/large/6d74e8d4gw1f6wrfiniw5j213k0lpgqb.jpg)
 
 - Relational result for a query with the PATH operation
-![path_relation](http://s2.sinaimg.cn/orignal/0020hfTezy747r2uTuxd1&690)
+![path_relation](http://ww3.sinaimg.cn/large/6d74e8d4gw1f6wrflmy62j213n0fsjtr.jpg)
 
 - Graphical result for a query with the PATH operation & Relation-Graph Mapping
-![path_graph](http://s10.sinaimg.cn/orignal/0020hfTezy747r2txI5c9&690)
+![path_graph](http://ww4.sinaimg.cn/large/6d74e8d4gw1f6wrfkp4rnj213l0negpt.jpg)
 
 - Database Info
-![dbinfo](http://s8.sinaimg.cn/orignal/0020hfTezy747m8UOure7&690)
+![dbinfo](http://ww3.sinaimg.cn/large/6d74e8d4gw1f6wrfjtsduj213j0jbdhd.jpg)
 
 ## Process of Graph Visualization
 ### Graph Rank Operation 
