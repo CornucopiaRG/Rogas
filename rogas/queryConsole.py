@@ -126,6 +126,14 @@ def prepare():
         
     try:
         pre_cur = SingleConnection.cursor()
+        
+        pre_cur.execute("select * from pg_tables where tablename = 'my_matgraphs';")
+        rows = pre_cur.fetchall()
+        #create the system catalog about materialised graphs
+        if len(rows) == 0:
+            pre_cur.execute("create table my_matgraphs (matgraphname text primary key, graphType text);")
+        SingleConnection.commit()
+        
         pre_cur.execute("select matgraphname from my_matgraphs;" )
         mat_graph_result = pre_cur.fetchall()
         for each_graph in mat_graph_result:

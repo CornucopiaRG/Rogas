@@ -5,8 +5,8 @@ This is the configuration
 '''
 
 #information to connect to database
-DB = "acm"
-DB_USER = "postgres"
+DB = "stack"
+DB_USER = "minjian"
 DB_PASSWORD = "111"
 DB_PORT = 5432
 
@@ -14,4 +14,4 @@ DB_PORT = 5432
 PAGE_MAX_NUM = 10 
 
 #whether graph_tool support openmp
-IS_GRAPH_TOOL_OPENMP = True 
+IS_GRAPH_TOOL_OPENMP = True

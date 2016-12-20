@@ -32,7 +32,9 @@ def getGraphCreationInfo(executeCommand):
     dotIndex = keyField.find(".")
     keyField = keyField[dotIndex+1:]
     tableName = helper.getAlphaNumSubString(tableName)
-
+    
+    #print keyField, tableName
+    
     return keyField, tableName    
 
 def generateEntityConnection(keyField, tableName):
@@ -47,6 +49,10 @@ def generateEntityConnection(keyField, tableName):
 
     entityTableName = infoString[referencesIndex + len("references"):leftBracketIndex].strip()
     entityIdField = infoString[leftBracketIndex+1:rightBracketIndex].strip()
+    
+    if(len(entityTableName)>80 or len(entityIdField)> 80):
+        return keyField, tableName
+    
     return entityIdField, entityTableName
 
 def dropCreationInfo(graphName, conn, cur):
@@ -124,6 +130,7 @@ def processCommand(executeCommand, conn ,cur):
             eIndex = lowerCaseCommand.index(";")
             graphName = lowerCaseCommand[sIndex:eIndex].strip() 
             cur.execute("DELETE FROM my_matgraphs where matgraphname = %s" % ("'" + graphName + "'"))
+            #cur.execute("DROP TABLE %s" % ("'crea_clu_" + graphName + "'"))
             conn.commit()
             if executeCommand.find("ungraph") != -1 or executeCommand.find("UNGRAPH") != -1:  
                 return (executeCommand.replace("ungraph", "materialized view")).replace("UNGRAPH", "materialized view"), graphName, "ungraph"
