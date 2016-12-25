@@ -57,13 +57,12 @@ CREATE UNGRAPH user_correlation AS
 	FROM ANSWER AS a1, ANSWER AS a2
 	WHERE a1.Parent_Qid = a2.Parent_Qid AND a1.Owner_id != a2.Owner_id
 	LIMIT 1000
-)
+);
 
 SELECT ClusterID, Size, Members 
 FROM CLUSTER(user_correlation, GN)
 ORDER BY Size DESC
 LIMIT 1; 
-
 
 
 5.Competitive users: users who are in the biggest community of correlative users and 
@@ -90,12 +89,11 @@ CREATE UNGRAPH question_correlation AS
 	FROM LABELLED_BY AS l1, LABELLED_BY AS l2
 	WHERE l1.Tid = l2.Tid AND l1.Qid != l2.Qid
 	LIMIT 1000
-)
+);
 
 SELECT ClusterID, Size, Members 
 FROM CLUSTER(question_correlation, CNM)
 ORDER BY Size DESC;
-
 
 
 7. Related Tag:Find the correlation groups of tags which are often used on 
@@ -107,8 +105,18 @@ CREATE UNGRAPH tag_correlation AS
 	FROM LABELLED_BY AS l1, LABELLED_BY AS l2
 	WHERE l1.Qid = l2.Qid AND l1.Tid != l2.Tid
 	LIMIT 1000
-)
+);
 
 SELECT ClusterID, Size, Members 
 FROM CLUSTER(tag_correlation, MC) 
 ORDER BY Size DESC;
+
+
+8. Finding Path: see how the 'c++' tag connects with the 'html' tag
+
+SELECT * FROM PATH(tag_correlation, V1//V2)
+WHERE V1 AS
+(SELECT Tid FROM TAG WHERE Tag_Label = 'c++')
+AND V2 AS
+(SELECT Tid FROM TAG WHERE Tag_Label = 'html')
+ORDER BY Length;
