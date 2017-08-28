@@ -32,25 +32,25 @@ their supporting algorithms.
 
 ## Work Screenshots
 - Relational result for a query with the RANK operation
-![rank_relation](http://ww1.sinaimg.cn/large/6d74e8d4gw1f6wrfmwh6dj213j0elgmt.jpg)
+![rank_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21083342_919659161515806_4718643341927717323_o.jpg?oh=a8297e822ad18f0663f3a6a7c6909b79&oe=5A5EA1D5)
 
 - Graphical result for a query with the RANK operation
-![rank_graph](http://ww1.sinaimg.cn/large/6d74e8d4gw1f6wrfmc4pxj213i0l2n3c.jpg)
+![rank_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21125702_919659144849141_8898442456570080374_o.jpg?oh=001be606e035434ae4a30c02d501ebc2&oe=5A27C4E2)
 
 - Relational result for a query with the CLUSTER operation
-![cluster_relation](http://ww1.sinaimg.cn/large/6d74e8d4gw1f6wrfjdsjuj213k0n241u.jpg)
+![cluster_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21125686_919659118182477_4669227882070502344_o.jpg?oh=f4b8b85f195cdfcc6e003bc209b94cf0&oe=5A16584B)
 
 - Graphical result for a query with the CLUSTER operation
-![cluster_graph](http://ww3.sinaimg.cn/large/6d74e8d4gw1f6wrfiniw5j213k0lpgqb.jpg)
+![cluster_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21167343_919659121515810_4963809998576747306_o.jpg?oh=e080bdacc41792f8f6bd8488eec9fc3f&oe=5A2F9602)
 
 - Relational result for a query with the PATH operation
-![path_relation](http://ww3.sinaimg.cn/large/6d74e8d4gw1f6wrflmy62j213n0fsjtr.jpg)
+![path_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21246579_919659138182475_5021826132940902360_o.jpg?oh=49b958a3db48e01b2267157415632049&oe=5A1FAB08)
 
 - Graphical result for a query with the PATH operation & Relation-Graph Mapping
-![path_graph](http://ww4.sinaimg.cn/large/6d74e8d4gw1f6wrfkp4rnj213l0negpt.jpg)
+![path_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21167515_919659134849142_7137453644422028625_o.jpg?oh=f7745e8c0296065531a898d92d15368f&oe=5A612DDE)
 
 - Database Info
-![dbinfo](http://ww3.sinaimg.cn/large/6d74e8d4gw1f6wrfjtsduj213j0jbdhd.jpg)
+![dbinfo](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21246405_919659114849144_3518535802659986691_o.jpg?oh=0df3617bcd070440f63f6896d8cd4639&oe=5A252080)
 
 ## Process of Graph Visualization
 ### Graph Rank Operation 
