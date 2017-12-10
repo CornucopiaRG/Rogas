@@ -32,25 +32,25 @@ their supporting algorithms.
 
 ## Work Screenshots
 - Relational result for a query with the RANK operation
-![rank_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21083342_919659161515806_4718643341927717323_o.jpg?oh=a8297e822ad18f0663f3a6a7c6909b79&oe=5A5EA1D5)
+![rank_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21083342_919659161515806_4718643341927717323_o.jpg?oh=81f5de1ed9d8624c9e0632ed9d2a26dc&oe=5AD548D5)
 
 - Graphical result for a query with the RANK operation
-![rank_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21125702_919659144849141_8898442456570080374_o.jpg?oh=001be606e035434ae4a30c02d501ebc2&oe=5A27C4E2)
+![rank_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21125702_919659144849141_8898442456570080374_o.jpg?oh=cfeb03e9819b3c09cf96d3b4cc383979&oe=5AC5F8E2)
 
 - Relational result for a query with the CLUSTER operation
-![cluster_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21125686_919659118182477_4669227882070502344_o.jpg?oh=f4b8b85f195cdfcc6e003bc209b94cf0&oe=5A16584B)
+![cluster_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21125686_919659118182477_4669227882070502344_o.jpg?oh=e3abca76c59d4c49e809a4823460fc56&oe=5A8CFF4B)
 
 - Graphical result for a query with the CLUSTER operation
-![cluster_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21167343_919659121515810_4963809998576747306_o.jpg?oh=e080bdacc41792f8f6bd8488eec9fc3f&oe=5A2F9602)
+![cluster_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21167343_919659121515810_4963809998576747306_o.jpg?oh=adb7b9153453c8447f0e20b9ce4a380b&oe=5ACDCA02)
 
 - Relational result for a query with the PATH operation
-![path_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21246579_919659138182475_5021826132940902360_o.jpg?oh=49b958a3db48e01b2267157415632049&oe=5A1FAB08)
+![path_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21246579_919659138182475_5021826132940902360_o.jpg?oh=d07fe479ee5f36a5a044e638879af7dc&oe=5ABDDF08)
 
 - Graphical result for a query with the PATH operation & Relation-Graph Mapping
-![path_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21167515_919659134849142_7137453644422028625_o.jpg?oh=f7745e8c0296065531a898d92d15368f&oe=5A612DDE)
+![path_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21167515_919659134849142_7137453644422028625_o.jpg?oh=bbc0d66113c09715ffffd143fd2e2ffb&oe=5AD7D4DE)
 
 - Database Info
-![dbinfo](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21246405_919659114849144_3518535802659986691_o.jpg?oh=0df3617bcd070440f63f6896d8cd4639&oe=5A252080)
+![dbinfo](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21246405_919659114849144_3518535802659986691_o.jpg?oh=12bc611ea150963c52825d14abf27586&oe=5AC35480)
 
 ## Process of Graph Visualization
 ### Graph Rank Operation 
