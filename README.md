@@ -32,25 +32,25 @@ their supporting algorithms.
 
 ## Work Screenshots
 - Relational result for a query with the RANK operation
-![rank_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21083342_919659161515806_4718643341927717323_o.jpg?oh=81f5de1ed9d8624c9e0632ed9d2a26dc&oe=5AD548D5)
+![rank_relation](https://raw.githubusercontent.com/Minjian/Rogas/master/rank_table.jpg)
 
 - Graphical result for a query with the RANK operation
-![rank_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21125702_919659144849141_8898442456570080374_o.jpg?oh=cfeb03e9819b3c09cf96d3b4cc383979&oe=5AC5F8E2)
+![rank_graph](https://raw.githubusercontent.com/Minjian/Rogas/master/rank_graph.jpg)
 
 - Relational result for a query with the CLUSTER operation
-![cluster_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21125686_919659118182477_4669227882070502344_o.jpg?oh=e3abca76c59d4c49e809a4823460fc56&oe=5A8CFF4B)
+![cluster_relation](https://raw.githubusercontent.com/Minjian/Rogas/master/cluster_table.jpg)
 
 - Graphical result for a query with the CLUSTER operation
-![cluster_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21167343_919659121515810_4963809998576747306_o.jpg?oh=adb7b9153453c8447f0e20b9ce4a380b&oe=5ACDCA02)
+![cluster_graph](https://raw.githubusercontent.com/Minjian/Rogas/master/cluster_graph.jpg)
 
 - Relational result for a query with the PATH operation
-![path_relation](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21246579_919659138182475_5021826132940902360_o.jpg?oh=d07fe479ee5f36a5a044e638879af7dc&oe=5ABDDF08)
+![path_relation](https://raw.githubusercontent.com/Minjian/Rogas/master/path_table.jpg)
 
 - Graphical result for a query with the PATH operation & Relation-Graph Mapping
-![path_graph](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21167515_919659134849142_7137453644422028625_o.jpg?oh=bbc0d66113c09715ffffd143fd2e2ffb&oe=5AD7D4DE)
+![path_graph](https://raw.githubusercontent.com/Minjian/Rogas/master/path_graph.jpg)
 
 - Database Info
-![dbinfo](https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/21246405_919659114849144_3518535802659986691_o.jpg?oh=12bc611ea150963c52825d14abf27586&oe=5AC35480)
+![dbinfo](https://raw.githubusercontent.com/Minjian/Rogas/master/graph_info.jpg)
 
 ## Process of Graph Visualization
 ### Graph Rank Operation 
