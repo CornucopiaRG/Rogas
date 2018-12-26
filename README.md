@@ -3,7 +3,7 @@ Rogas(https://github.com/CornucopiaRG/Rogas) is a project for Network Analytics
 
 
 ## Introduction
-Rogas not only can provides a high-level declarative query language to 
+Rogas (Relational-Oriented Graph Analytic System) not only can provides a high-level declarative query language to 
 formulate analysis queries, but also can unify different graph algorithms 
 within the relational environment for query processing.
 <br>
